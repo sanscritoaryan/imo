@@ -1,4 +1,4 @@
-# imo
+# front-end
 
 ## Project setup
 ```

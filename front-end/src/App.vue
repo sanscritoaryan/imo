@@ -1,26 +1,29 @@
 <template>
-	<div class="">
-		
+	<div class="main">
+		<Navbar/>
+		<router-view/>
 	</div>
 </template>
 
 <script>
+import Navbar from "./components/Navbar.vue";
 
 export default {
-	name: "App",
 	components: {
-
+		Navbar,
 	},
 };
+
 </script>
 
 <style>
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap');
+*{
+	font-family: 'Poppins';
 }
+.main{
+	margin-right: 50px;
+	margin-left: 50px;
+}
+
 </style>
