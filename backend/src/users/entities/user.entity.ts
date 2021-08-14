@@ -17,6 +17,9 @@ export class User {
   @Column()
   password: string;
 
+  @Column({ nullable: true })
+  photoUrl?: string;
+
   @CreateDateColumn({
     name: "created_at",
     type: "timestamp",

@@ -6,11 +6,21 @@ import {
   // Patch,
   Param,
   // Delete,
-  ParseUUIDPipe
+  ParseUUIDPipe,
+  Patch,
+  UseGuards,
+  Req
 } from "@nestjs/common";
-import { UsersService } from "./users.service";
+import { FastifyRequest } from "fastify";
 import { CreateUserDto } from "./dto/create-user.dto";
-// import { UpdateUserDto } from "./dto/update-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
+import { JwtAuthGuard } from "src/auth/passport/jwt.guard";
+import { UsersService } from "./users.service";
+import { User } from "./entities/user.entity";
+
+interface Request extends FastifyRequest {
+  user: User;
+}
 
 @Controller("users")
 export class UsersController {
@@ -31,13 +41,15 @@ export class UsersController {
     return this.usersService.findOne(id);
   }
 
-  // @Patch(":id")
-  // update(
-  //   @Param("id", ParseUUIDPipe) id: string,
-  //   @Body() updateUserDto: UpdateUserDto
-  // ) {
-  //   return this.usersService.update(id, updateUserDto);
-  // }
+  @Patch()
+  @UseGuards(JwtAuthGuard)
+  update(
+    // @Param("id", ParseUUIDPipe) id: string,
+    @Req() request: Request,
+    @Body() updateUserDto: UpdateUserDto
+  ) {
+    return this.usersService.update(request.user, updateUserDto);
+  }
 
   // @Delete(":id")
   // remove(@Param("id") id: string) {

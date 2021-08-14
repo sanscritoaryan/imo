@@ -6,7 +6,7 @@ import {
 import { FindConditions, ObjectLiteral, Repository } from "typeorm";
 import { InjectRepository } from "@nestjs/typeorm";
 import { CreateUserDto } from "./dto/create-user.dto";
-// import { UpdateUserDto } from "./dto/update-user.dto";
+import { UpdateUserDto } from "./dto/update-user.dto";
 import { User } from "./entities/user.entity";
 
 type UserWhere =
@@ -42,9 +42,18 @@ export class UsersService {
     }
   }
 
-  // update(id: string, updateUserDto: UpdateUserDto) {
-  //   return `This action updates a #${id} user`;
-  // }
+  async update(user: User, updateUserDto: UpdateUserDto) {
+    try {
+      await this.usersRepository.update({ id: user.id }, updateUserDto);
+
+      const newUser = { ...user, ...updateUserDto };
+      delete newUser.password;
+
+      return newUser;
+    } catch {
+      throw new BadRequestException();
+    }
+  }
 
   // remove(id: string) {
   //   return `This action removes a #${id} user`;

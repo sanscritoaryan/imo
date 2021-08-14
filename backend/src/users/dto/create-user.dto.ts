@@ -1,4 +1,4 @@
-import { IsAlpha, Length } from "class-validator";
+import { IsAlpha, IsUrl, Length, IsOptional } from "class-validator";
 
 export class CreateUserDto {
   @IsAlpha()
@@ -7,4 +7,8 @@ export class CreateUserDto {
 
   @Length(6, 21)
   password: string;
+
+  @IsUrl()
+  @IsOptional()
+  photoUrl?: string;
 }
