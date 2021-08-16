@@ -82,7 +82,7 @@ export default {
 		submit: async function() {
 			this.errors = [];
 			if (!this.username || !this.password) {
-				this.errors.push("void form");
+				this.errors.push("Fill in the empty fields");
 				return;
 			}
 
