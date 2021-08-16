@@ -13,7 +13,6 @@ export default {
 		Navbar,
 	},
 };
-
 </script>
 
 <style>
@@ -25,5 +24,4 @@ export default {
 	margin-right: 50px;
 	margin-left: 50px;
 }
-
 </style>

@@ -28,5 +28,9 @@ export default {
 }
 .link{
 	color: #2d3436 !important;
+	font-weight: 500;
+}
+.link:hover{
+	color: #636363 !important;
 }
 </style>
